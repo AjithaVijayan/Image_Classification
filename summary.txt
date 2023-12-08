@@ -1,0 +1,44 @@
+Model Overview
+The chosen model is a Convolutional Neural Network (CNN) designed for image classification. CNNs are well-suited for tasks such as identifying satellite images, processing medical images, forecasting time series, and detecting anomalies.
+Key Components:
+1. Convolution Layers:
+   - Core building blocks.
+   - Utilizes filters (kernels) to scan input images for features.
+   - Convolution involves applying filters to image regions, computing dot products, and shifting by a defined stride.  
+2. Activation Functions:
+   - Used to introduce non-linearity.
+3. Pooling Layers:
+   - Performs downsampling, reducing parameters.
+   - Two types: Maxpooling (selects max pixel value) and Average pooling (calculates average value).
+4. Feedforward Neural Network:
+   - Specifically designed for processing visual data using grid technology.
+
+Training Process:
+Image Preprocessing:
+   - Load images with OpenCV.
+   - Convert images to RGB color space.
+   - Resize images to (128, 128).
+   - Convert images to NumPy arrays.
+Model Architecture:
+   - Sequential CNN model:
+     - Convolutional layer (32 filters, 3x3 kernel size, ReLU activation).
+     - Max pooling layer (2x2 pool size).
+     - Flatten layer (converts 2D feature map to 1D vector).
+     - Dense layer (256 units, ReLU activation).
+     - Dropout layer (0.1 dropout rate to prevent overfitting).
+     - Dense layer (512 units, ReLU activation).
+     - Output layer (5 units, softmax activation for multi-class classification).
+Model Compilation:
+   - Compiled using Adam optimizer, sparse categorical cross-entropy loss, and accuracy as a metric.
+Model Training:
+   - Dataset split into 70% training and 30% testing using scikit-learn's `train_test_split`.
+   - Normalize training and testing data to scale pixel values between 0 and 1.
+   - Train the model for about 200 epochs with a validation split of 0.1.
+Critical Findings:
+Despite achieving a 91.18% accuracy after 200 epochs, the model's performance is hindered by the small dataset (165 images). This limited dataset size leads to overfitting. To enhance the model:
+   - Increase the size and diversity of the training dataset.
+   - Experiment with different regularization techniques.
+   - Consider data augmentation to artificially increase dataset size.
+   - Fine-tune hyperparameters for better generalization.
+
+
